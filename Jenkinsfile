@@ -9,13 +9,13 @@ pipeline {
         checkout scm
       }
     }
-    stage('Build') {
-      steps {
+ //   stage('Build') {
+   //   steps {
       
     //     sh 'mvn clean package -DskipTests'
       
-      } 
-    }
+     // } 
+   // }
     stage('createAnInstance')
     {
       steps {
