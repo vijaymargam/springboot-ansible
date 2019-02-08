@@ -19,8 +19,9 @@ pipeline {
     stage('createAnInstance')
     {
       steps {
-          ansiblePlaybook become: true, disableHostKeyChecking: true, inventory: '/etc/ansible/hosts', playbook: '$WORKSPACE/createInstance.yaml'
-          sh 'sleep 100'
+        node ("Ansible"){
+          ansiblePlaybook become: true, disableHostKeyChecking: true, inventory: '/etc/ansible/hosts', playbook: '/home/centos/createInstance.yaml'
+          sh 'sleep 100' }
       }
     }
     
