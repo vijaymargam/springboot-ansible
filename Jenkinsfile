@@ -19,7 +19,7 @@ pipeline {
     stage('createAnInstance')
     {
       steps {
-          ansiblePlaybook become: true, credentialsId: 'windows', disableHostKeyChecking: true, inventory: '/etc/ansible/hosts', playbook: '$WORKSPACE/createInstance.yaml'
+          ansiblePlaybook become: true, disableHostKeyChecking: true, inventory: '/etc/ansible/hosts', playbook: '$WORKSPACE/createInstance.yaml'
           sh 'sleep 100'
       }
     }
