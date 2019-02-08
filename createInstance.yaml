@@ -11,10 +11,10 @@
         ec2:
           group: default
           instance_type: t2.micro
-          image: ami-0080e4c5bc078760e
+          image: ami-0ad42f4f66f6c1cc9
           wait: true
-          region: us-east-1
-          keypair: sudhakar1
+          region: ap-south-1
+          keypair: windows
           count: 1
           volumes:
             - device_name: /dev/xvda
@@ -24,12 +24,13 @@
       - name: Add tag to Instance(s)
         ec2_tag:
           resource: "{{ item.id }}"
-          region: "us-east-1" 
+          region: "ap-south-1" 
           state: present
         with_items: "{{ ec2.instances }}"
         args:
           tags:
-            Name: petclinic
+            Name: Spring_Boot
+            Env: Dev
 
       - name: touch a static inventory file
 
