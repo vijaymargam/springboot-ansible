@@ -20,7 +20,7 @@ pipeline {
     {
       steps {
           //sh 'ansible-playbook createInstance.yaml'
-         ansiblePlaybook become: true, credentialsId: 'SudhakarPrivateKey', disableHostKeyChecking: true, inventory: '/etc/ansible/hosts', playbook: '$WORKSPACE/createInstance.yaml'
+         ansiblePlaybook become: true, disableHostKeyChecking: true, inventory: '/etc/ansible/hosts', playbook: '$WORKSPACE/createInstance.yaml'
 
           sh 'sleep 10'
       }
