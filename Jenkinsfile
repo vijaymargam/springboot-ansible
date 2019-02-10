@@ -9,19 +9,20 @@ pipeline {
         checkout scm
       }
     }
- //   stage('Build') {
-   //   steps {
+    stage('Build') {
+      steps {
       
-    //     sh 'mvn clean package -DskipTests'
+         sh 'mvn clean package -DskipTests'
       
-     // } 
-   // }
+      } 
+    }
     stage('createAnInstance')
     {
       steps {
-          sh 'ansible-playbook createInstance.yaml'
-          //ansiblePlaybook become: true, disableHostKeyChecking: true, inventory: '/etc/ansible/hosts', playbook: '$WORKSPACE/createInstance.yaml'
-          sh 'sleep 100'
+          //sh 'ansible-playbook createInstance.yaml'
+         ansiblePlaybook become: true, credentialsId: 'SudhakarPrivateKey', disableHostKeyChecking: true, inventory: '/etc/ansible/hosts', playbook: '$WORKSPACE/createInstance.yaml'
+
+          sh 'sleep 10'
       }
     }
     
@@ -29,7 +30,7 @@ pipeline {
     {
       steps {
         
-          ansiblePlaybook become: true, colorized: true, credentialsId: 'windows', disableHostKeyChecking: true, extras: '-e WORKSPACE=$WORKSPACE', inventory: '/tmp/hosts', playbook: '$WORKSPACE/deployArtifact.yaml'
+          ansiblePlaybook become: true, colorized: true, credentialsId: 'SudhakarPrivateKey', disableHostKeyChecking: true, extras: '-e WORKSPACE=$WORKSPACE', inventory: '/tmp/hosts', playbook: '$WORKSPACE/deployArtifact.yaml'
 
           }
     }
