@@ -20,6 +20,7 @@ pipeline {
     {
       steps {
         node('Ansible'){
+          checkout scm
           //sh 'ansible-playbook createInstance.yaml'
          ansiblePlaybook become: true, disableHostKeyChecking: true, credentialsId: 'SudhakarPrivateKey', inventory: '/etc/ansible/hosts', playbook: '$WORKSPACE/createInstance.yaml'
 
