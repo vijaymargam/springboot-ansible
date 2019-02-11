@@ -32,8 +32,8 @@ pipeline {
     stage('InstallSoftwares and Deploy code')
     {
       steps {
-        
-          ansiblePlaybook become: true, colorized: true, credentialsId: 'SudhakarPrivateKey', disableHostKeyChecking: true, extras: '-e WORKSPACE=$WORKSPACE', inventory: '/tmp/hosts', playbook: '$WORKSPACE/deployArtifact.yaml'
+          ansiblePlaybook become: true, credentialsId: 'SudhakarPrivateKey', disableHostKeyChecking: true, inventory: '/tmp/hosts', playbook: 'deployArtifact.yaml'
+          //ansiblePlaybook become: true, colorized: true, credentialsId: 'SudhakarPrivateKey', disableHostKeyChecking: true, extras: '-e WORKSPACE=$WORKSPACE', inventory: '/tmp/hosts', playbook: '$WORKSPACE/deployArtifact.yaml'
 
           }
     }
